@@ -6,17 +6,17 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
-*	Test
-*	@author MKG
-*	@version $Id$
-*	@since 0.1
-*/
+ *	Test
+ *	@author MKG
+ *	@version $Id$
+ *	@since 0.1
+ */
 public class CalculateTest {
-	
+
 	/**
-	*	Test Echo
-	*
-	*/
+	 *	Test Echo
+	 *
+	 */
 	@Test
 	public void whenTakeNameThenTreeEchoPlusName() {
 		String input = "Petr Arsentev";
