@@ -46,7 +46,7 @@ public class PaintTest {
     @Test
     public void whenPiramind() {
         Paint paint = new Paint();
-        String rst = paint.piramid(4);
+        String rst = paint.pyramid(4);
         System.out.print(rst);
         assertThat(rst,
                 is(
