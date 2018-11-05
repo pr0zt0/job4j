@@ -18,4 +18,11 @@ public class ArrayCharTest {
         boolean result = word.startWith("Hi");
         assertThat(result, is(false));
     }
+
+    @Test
+    public void whenManyStartWithPrefixThen() {
+        ArrayChar word = new ArrayChar("Hello World!");
+        boolean result = word.startWith("Hell");
+        assertThat(result, is(true));
+    }
 }
