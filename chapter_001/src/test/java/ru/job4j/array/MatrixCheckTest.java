@@ -33,11 +33,11 @@ public class MatrixCheckTest {
     public void when4NormalThenTrue() {
         MatrixCheck check = new MatrixCheck();
         boolean[][] input = new boolean[][] {
-                {true, true},
+                {true, false},
                 {false, true},
         };
         boolean result = check.mono(input);
-        assertThat(result, is(false));
+        assertThat(result, is(true));
     }
 
     @Test
