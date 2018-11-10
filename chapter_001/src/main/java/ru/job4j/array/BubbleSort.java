@@ -1,6 +1,14 @@
 package ru.job4j.array;
 
+/**
+ * Сортеровка пузырьком
+ */
 public class BubbleSort {
+    /**
+     * Проверяет. что слово начинается с префикса.
+     * @param array массив.
+     * @return возвращает отсортерованный массив
+     */
     public int[] sort(int[] array) {
         int temp;
         for (int i = 1; i < array.length - 1; i++) {
