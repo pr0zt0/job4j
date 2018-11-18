@@ -52,7 +52,7 @@ public class Tracker {
         for (int index = 0; index != this.position; index++) {
             if (items[index].getId().equals(id)) {
                 System.arraycopy(this.items, index + 1, this.items, index, position - (index + 1));
-
+                break;
             }
         }
     }
@@ -69,11 +69,18 @@ public class Tracker {
     }
 
     public Item[] findByName(String key) {
-        Item[] result = new Item[this.position];
-        int ind = 0;
+        int index = 0;
+        int count = 0;
+        // узнаем какой массив нам нужен
         for (int i = 0; i != this.position; i++) {
             if (items[i].getName().equals(key)) {
-                result[ind++] = items[i];
+                count++;
+            }
+        }
+        Item[] result = new Item[count + 1];
+        for (int i = 0; i != this.position; i++) {
+            if (items[i].getName().equals(key)) {
+                result[index++] = items[i];
             }
         }
         return result;

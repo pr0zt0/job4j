@@ -7,11 +7,10 @@ public class Item {
     private String[] comment;
     private String id;
 
-    public Item(String name, String description, long created) {
+    public Item(String name, String description) {
         this.name = name;
         this.description = description;
-        this.created = created;
-       // this.comment = comment;
+        this.created = System.currentTimeMillis();
     }
 
     public String getName() {
