@@ -51,7 +51,7 @@ public class Tracker {
     public void delete(String id) {
         for (int index = 0; index != this.position; index++) {
             if (items[index].getId().equals(id)) {
-                System.arraycopy(this.items, index + 1, this.items, index, position - (index + 1));
+                System.arraycopy(this.items, index + 1, this.items, index, items.length - (index + 1));
                 break;
             }
         }
@@ -69,18 +69,11 @@ public class Tracker {
     }
 
     public Item[] findByName(String key) {
-        int index = 0;
         int count = 0;
-        // узнаем какой массив нам нужен
+        Item[] result = new Item[this.position];
         for (int i = 0; i != this.position; i++) {
             if (items[i].getName().equals(key)) {
-                count++;
-            }
-        }
-        Item[] result = new Item[count + 1];
-        for (int i = 0; i != this.position; i++) {
-            if (items[i].getName().equals(key)) {
-                result[index++] = items[i];
+                System.arraycopy(this.items, i, result, count++, 1);
             }
         }
         return result;
