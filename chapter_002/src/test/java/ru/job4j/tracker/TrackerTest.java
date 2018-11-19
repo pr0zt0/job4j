@@ -58,7 +58,7 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item previous = new Item("test1", "testDescription");
         tracker.add(previous);
-        Item next = new Item("test2", "testDescription2");
+        Item next = new Item("test1", "testDescription2");
         tracker.add(next);
         assertThat(tracker.findByName("test1")[0], is(previous));
     }

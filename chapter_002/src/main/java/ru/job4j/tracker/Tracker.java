@@ -67,7 +67,7 @@ public class Tracker {
         }
         return result;
     }
-
+    /*
     public Item[] findByName(String key) {
         int count = 0;
         Item[] result = new Item[this.position];
@@ -78,7 +78,18 @@ public class Tracker {
         }
         return result;
     }
-
+    */
+    public Item[] findByName(String key) {
+        int count = 0;
+        Item[] result = new Item[this.position];
+        for (int i = 0; i != this.position; i++) {
+            if (items[i].getName().equals(key)) {
+                result[count++] = items[i];
+            }
+        }
+        System.arraycopy(result, 0, items, 0, result.length);
+        return items;
+    }
     public Item findById(String id) {
         Item result = null;
         for (Item item : items) {
