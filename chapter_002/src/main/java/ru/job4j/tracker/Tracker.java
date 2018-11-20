@@ -20,6 +20,13 @@ public class Tracker {
         return item;
     }
 
+    public void edit(String id, String changeChoose, String fieldNew) {
+        if (changeChoose.equals("name")) {
+         findById(id).setName(fieldNew);
+        } else if (changeChoose.equals("description")) {
+            findById(id).setDescription(fieldNew);
+        }
+    }
     /**
      * Метод генерирует уникальный ключ для заявки.
      * Так как у заявки нет уникальности полей, имени и описание. Для идентификации нам нужен уникальный ключ.
@@ -79,6 +86,7 @@ public class Tracker {
         return result;
     }
     */
+
     public Item[] findByName(String key) {
         int count = 0;
         Item[] result = new Item[this.position];
