@@ -87,8 +87,7 @@ public class Tracker {
                 result[count++] = items[i];
             }
         }
-        System.arraycopy(result, 0, items, 0, result.length);
-        return items;
+        return Arrays.copyOf(result, result.length);
     }
     public Item findById(String id) {
         Item result = null;
