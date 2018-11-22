@@ -20,12 +20,16 @@ public class Tracker {
         return item;
     }
 
-    public void edit(String id, String changeChoose, String fieldNew) {
+    public boolean edit(String id, String changeChoose, String fieldNew) {
+        boolean flag = false;
         if (changeChoose.equals("name")) {
          findById(id).setName(fieldNew);
+         flag = true;
         } else if (changeChoose.equals("description")) {
             findById(id).setDescription(fieldNew);
+            flag = true;
         }
+        return flag;
     }
     /**
      * Метод генерирует уникальный ключ для заявки.
@@ -55,14 +59,17 @@ public class Tracker {
      *  Далее сместить все значения справа от удаляемого элемента - на одну ячейку влево с помощью System.arrayCopy();
      * @param id Уникальный ключ
      */
-    public void delete(String id) {
+    public boolean delete(String id) {
+        boolean flag = false;
         for (int index = 0; index != this.position; index++) {
             if (items[index].getId().equals(id)) {
                 System.arraycopy(this.items, index + 1, this.items, index, items.length - (index + 1));
                 position--;
+                flag = true;
                 break;
             }
         }
+        return flag;
     }
 
     /**

@@ -56,7 +56,9 @@ public class StartUI {
             } else if (EXIT.equals(answer)) {
                 exit = true;
             } else if (FINDNAME.equals(answer)) {
-                this.findByNameItem();
+                if(!this.findByNameItem()) {
+                    System.out.println("------------ Ошибка !-----------");
+                }
             } else if (SHOW.equals(answer)) {
                 this.showAllItem();
             } else if (EDIT.equals(answer)) {
@@ -71,30 +73,42 @@ public class StartUI {
     private void deleteItem() {
         System.out.println("------------ Удаление заявки по ID --------------");
         String id = this.input.ask("Введите id заявки: ");
-        this.tracker.delete(id);
-        System.out.println("------------ Заявка удалена -----------");
+        if(this.tracker.delete(id)) {
+            System.out.println("------------ Заявка удалена -----------");
+        } else {
+            System.out.println("------------ Ошибка !-----------");
+        }
     }
     private void editItem() {
         System.out.println("------------ Укажите ID для редактирование заявки --------------");
         String id = this.input.ask("Введите id заявки: ");
         String changeChoose = this.input.ask("Введите поле для редактирования (name или description): ");
         String fieldNew = this.input.ask("Введите новое значение: ");
-        this.tracker.edit(id, changeChoose, fieldNew);
+        if(this.tracker.edit(id, changeChoose, fieldNew)) {
+            System.out.println("------------ Заявка удалена -----------");
+        } else {
+            System.out.println("------------ Ошибка !-----------");
+        }
     }
     private void showAllItem() {
-        System.out.println("------------ Текущие заявки --------------");
-        int i = 0;
-        while (i < this.tracker.findAll().length) {
-            System.out.println("Заяка :" + "ID " + this.tracker.findAll()[i].getId() + " Имя " + this.tracker.findAll()[i].getName() + " Описание " + this.tracker.findAll()[i].getDescription());
-            i++;
+        if (this.tracker.findAll().length == 0) {
+            System.out.println("------------ Списoк пуст --------------");
+        } else {
+            System.out.println("------------ Текущие заявки --------------");
+            for (Item temp : this.tracker.findAll()) {
+                System.out.println(temp);
+            }
         }
     }
-    private void findByNameItem() {
+    private boolean findByNameItem() {
+        boolean flag = false;
         System.out.println("------------ Поиск по key --------------");
         String key = this.input.ask("Введите key: ");
-        for (int i = 0; i < this.tracker.findByName(key).length; i++) {
-            System.out.println("Заяка :" + "ID " + this.tracker.findByName(key)[i].getId());
+        for (Item itemName : this.tracker.findByName(key)) {
+            System.out.println(itemName);
+            flag = true;
         }
+        return flag;
     }
     /**
      * Метод поиска заявки по ID
@@ -102,7 +116,11 @@ public class StartUI {
     private void findByIdItem() {
         System.out.println("------------ Поиск заявки по ID --------------");
         String id = this.input.ask("Введите id заявки: ");
-        System.out.println("------------ Заявка с данным id : " +  this.tracker.findById(id) + "-----------");
+        if (this.tracker.findById(id) == null) {
+            System.out.println("Такой заявки нету");
+        } else {
+            System.out.println("------------ Заявка с данным id : " +  this.tracker.findById(id) + "-----------");
+        }
     }
     /**
      * Метод реализует добавленяи новый заявки в хранилище.

@@ -44,4 +44,10 @@ public class Item {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Заяка : ID " + this.id + " Имя " + this.name + " Описание " + this.description;
+    }
 }
+
