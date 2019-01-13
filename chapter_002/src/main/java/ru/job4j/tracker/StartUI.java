@@ -56,7 +56,7 @@ public class StartUI {
             } else if (EXIT.equals(answer)) {
                 exit = true;
             } else if (FINDNAME.equals(answer)) {
-                if(!this.findByNameItem()) {
+                if (!this.findByNameItem()) {
                     System.out.println("------------ Ошибка !-----------");
                 }
             } else if (SHOW.equals(answer)) {
@@ -73,7 +73,7 @@ public class StartUI {
     private void deleteItem() {
         System.out.println("------------ Удаление заявки по ID --------------");
         String id = this.input.ask("Введите id заявки: ");
-        if(this.tracker.delete(id)) {
+        if (this.tracker.delete(id)) {
             System.out.println("------------ Заявка удалена -----------");
         } else {
             System.out.println("------------ Ошибка !-----------");
@@ -84,18 +84,19 @@ public class StartUI {
         String id = this.input.ask("Введите id заявки: ");
         String changeChoose = this.input.ask("Введите поле для редактирования (name или description): ");
         String fieldNew = this.input.ask("Введите новое значение: ");
-        if(this.tracker.edit(id, changeChoose, fieldNew)) {
+        if (this.tracker.edit(id, changeChoose, fieldNew)) {
             System.out.println("------------ Заявка удалена -----------");
         } else {
             System.out.println("------------ Ошибка !-----------");
         }
     }
     private void showAllItem() {
-        if (this.tracker.findAll().length == 0) {
+        Item[] check = this.tracker.findAll();
+        if (check.length == 0) {
             System.out.println("------------ Списoк пуст --------------");
         } else {
             System.out.println("------------ Текущие заявки --------------");
-            for (Item temp : this.tracker.findAll()) {
+            for (Item temp : check) {
                 System.out.println(temp);
             }
         }
@@ -116,10 +117,11 @@ public class StartUI {
     private void findByIdItem() {
         System.out.println("------------ Поиск заявки по ID --------------");
         String id = this.input.ask("Введите id заявки: ");
-        if (this.tracker.findById(id) == null) {
+        Item check = this.tracker.findById(id);
+        if (check == null) {
             System.out.println("Такой заявки нету");
         } else {
-            System.out.println("------------ Заявка с данным id : " +  this.tracker.findById(id) + "-----------");
+            System.out.println("------------ Заявка с данным id : " +  check + "-----------");
         }
     }
     /**
