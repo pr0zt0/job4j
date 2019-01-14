@@ -85,7 +85,7 @@ public class StartUI {
         String changeChoose = this.input.ask("Введите поле для редактирования (name или description): ");
         String fieldNew = this.input.ask("Введите новое значение: ");
         if (this.tracker.edit(id, changeChoose, fieldNew)) {
-            System.out.println("------------ Заявка удалена -----------");
+            System.out.println("------------ Заявка изменина -----------");
         } else {
             System.out.println("------------ Ошибка !-----------");
         }
