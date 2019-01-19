@@ -99,9 +99,7 @@ public class StartUI {
             }
         }
     }
-    private boolean findByNameItem() {
-
-        boolean flag = false;
+    private void findByNameItem() {
         System.out.println("------------ Поиск по key --------------");
         String key = this.input.ask("Введите key: ");
         Item[] temp = this.tracker.findByName(key);
@@ -110,9 +108,7 @@ public class StartUI {
         }
         for (Item itemName : this.tracker.findByName(key)) {
             System.out.println(itemName);
-            flag = true;
         }
-        return flag;
     }
     /**
      * Метод поиска заявки по ID
