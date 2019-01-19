@@ -56,9 +56,7 @@ public class StartUI {
             } else if (EXIT.equals(answer)) {
                 exit = true;
             } else if (FINDNAME.equals(answer)) {
-                if (!this.findByNameItem()) {
-                    System.out.println("------------ Ошибка !-----------");
-                }
+                this.findByNameItem();
             } else if (SHOW.equals(answer)) {
                 this.showAllItem();
             } else if (EDIT.equals(answer)) {
@@ -102,9 +100,14 @@ public class StartUI {
         }
     }
     private boolean findByNameItem() {
+
         boolean flag = false;
         System.out.println("------------ Поиск по key --------------");
         String key = this.input.ask("Введите key: ");
+        Item[] temp = this.tracker.findByName(key);
+        if (temp.length == 0) {
+            System.out.println("------------ Ошибка !-----------");
+        }
         for (Item itemName : this.tracker.findByName(key)) {
             System.out.println(itemName);
             flag = true;
