@@ -1,5 +1,6 @@
 package ru.job4j.array;
 
+<<<<<<< HEAD
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -15,4 +16,7 @@ public class MatrixTest {
         };
         assertThat(table, is(expect));
     }
+=======
+public class MatrixTest {
+>>>>>>> 783ef7b... Update README.md
 }

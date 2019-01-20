@@ -1,6 +1,7 @@
 package ru.job4j.array;
 
 public class Matrix {
+<<<<<<< HEAD
     public int[][] multiple(int size) {
         int[][] table = new int[size][size];
         for (int i = 0; i < size; i++) {
@@ -10,4 +11,6 @@ public class Matrix {
         }
         return table;
     }
+=======
+>>>>>>> 783ef7b... Update README.md
 }
