@@ -47,7 +47,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Заяка : ID " + this.id + " Имя " + this.name + " Описание " + this.description;
+        return "Заявка : ID " + this.id + " Имя " + this.name + " Описание " + this.description;
     }
 }
 

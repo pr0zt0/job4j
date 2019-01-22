@@ -5,7 +5,57 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import org.junit.After;
+import org.junit.Before;
+import java.util.StringJoiner;
+
 public class StartUITest {
+    private final PrintStream stdout = System.out;
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+    @Before
+    public void loadOutput() {
+        System.out.println("execute before method");
+        System.setOut(new PrintStream(this.out));
+    }
+
+    @After
+    public void backOutput() {
+        System.setOut(this.stdout);
+        System.out.println("execute after method");
+    }
+
+    @Test
+    public void whenUsershowAllItem() {
+        // создаём Tracker
+        Tracker tracker = new Tracker();
+        //Напрямую добавляем заявку
+        Item item = tracker.add(new Item("test name", "desc"));
+        Input input = new StubInput(new String[]{"1", "6"});
+        new StartUI(input, tracker).init();
+        // проверяем, что нулевой элемент массива в трекере содержит имя, введённое при эмуляции.
+        assertThat(this.out.toString(), is(
+                new StringBuilder()
+                        .append("Меню.\n")
+                        .append("0. Add new Item\n")
+                        .append("1. Show all items\n")
+                        .append("2. Edit item\n")
+                        .append("3. Delete item\n")
+                        .append("4. Find item by Id\n")
+                        .append("5. Find items by name\n")
+                        .append("6. Exit Program\n\r\n")
+                        .append("------------ Текущие заявки --------------\r\n")
+                        .append("Заявка : ID ")
+                        .append(item.getId())
+                        .append(" Имя test name Описание desc\r\n")
+                        .append("Меню.\n0. Add new Item\n1. Show all items\n2. Edit item\n3. Delete item\n4. Find item by Id\n5. Find items by name\n6. Exit Program\n\r\n")
+                        .toString()
+            )
+        );
+    }
 
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
